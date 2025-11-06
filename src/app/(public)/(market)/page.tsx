@@ -1,3 +1,4 @@
+"use client";
 import { FilterSideBar } from "@/components/FilterSideBar";
 import Header from "@/components/Header";
 
@@ -5,9 +6,21 @@ const MarketPage = () => {
   return (
     <>
       <Header />
-      <main className="text-white grid grid-cols-[1fr_5.3fr]">
+      <main className="text-white grid grid-cols-[308px_1fr]">
         <FilterSideBar />
-        <div>asdsadsa</div>
+
+        <div className="p-4">
+          <div>asdsadsa</div>
+          <div>asdsadsa</div>
+          <div>asdsadsa</div>
+          <div>asdsadsa</div>
+          <div>asdsadsa</div>
+          <div>asdsadsa</div>
+          <div>asdsadsa</div>
+          <div>asdsadsa</div>
+          <div>asdsadsa</div>
+          <div>asdsadsa</div>
+        </div>
       </main>
     </>
   );

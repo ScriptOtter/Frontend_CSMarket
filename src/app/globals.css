@@ -44,7 +44,93 @@
 
   --text-md: var(--text-md);
 
-  --color-main-blue: var(--main-blue);
+  --color-header-blue: var(--color-header-blue);
+  --color-header-blue-hover: var(--color-header-blue-hover);
+  --color-header: var(--color-header);
+  --color-main: var(--color-main);
+
+  --color-tarpaulin-grey: var(--color-tarpaulin-grey);
+  --color-gray: var(--color-gray);
+  --color-input-search: var(--color-input-search);
+  --color-bg-logo: var(--color-bg-logo);
+  --color-bg-logo-hover: var(--color-bg-logo-hover);
+  /* Цвета качества */
+
+  --color-FN: var(--color-FN);
+  --color-FN-hover: var(--color-FN-hover);
+
+  --color-MW: var(--color-MW);
+  --color-MW-hover: var(--color-MW-hover);
+
+  --color-FT: var(--color-FT);
+  --color-FT-hover: var(--color-FT-hover);
+
+  --color-WW: var(--color-WW);
+  --color-WW-hover: var(--color-WW-hover);
+
+  --color-BS: var(--color-BS);
+  --color-BS-hover: var(--color-BS-hover);
+
+  /* Цвета раритетности */
+
+  --color-consumer-grade: var(--color-consumer-grade);
+  --color-consumer-grade-hover: var(--color-consumer-grade-hover);
+
+  --color-industrial-grade: var(--color-industrial-grade);
+  --color-industrial-grade-hover: var(--color-industrial-grade-hover);
+
+  --color-mil-spec-grade: var(--color-mil-spec-grade);
+  --color-mil-spec-grade-hover: var(--color-mil-spec-grade-hover);
+
+  --color-restricted: var(--color-restricted);
+  --color-restricted-hover: var(--color-restricted-hover);
+
+  --color-classified: var(--color-classified);
+  --color-classified-hover: var(--color-classified-hover);
+
+  --color-covert: var(--color-covert);
+  --color-covert-hover: var(--color-covert-hover);
+
+  --color-contraband: var(--color-contraband);
+  --color-contraband-hover: var(--color-contraband-hover);
+
+  --color-master: var(--color-master);
+  --color-master-hover: var(--color-master-hover);
+
+  --color-superior: var(--color-superior);
+  --color-superior-hover: var(--color-superior-hover);
+
+  --color-exceptional: var(--color-exceptional);
+  --color-exceptional-hover: var(--color-exceptional-hover);
+
+  --color-distinguished: var(--color-distinguished);
+  --color-distinguished-hover: var(--color-distinguished-hover);
+
+  --color-base-grade: var(--color-base-grade);
+  --color-base-grade-hover: var(--color-base-grade-hover);
+
+  --color-high-grade: var(--color-high-grade);
+  --color-high-grade-hover: var(--color-high-grade-hover);
+
+  --color-remarkable: var(--color-remarkable);
+  --color-remarkable-hover: var(--color-remarkable-hover);
+
+  --color-exotic: var(--color-exotic);
+  --color-exotic-hover: var(--color-exotic-hover);
+
+  --color-extraordinary: var(--color-extraordinary);
+  --color-extraordinary-hover: var(--color-extraordinary-hover);
+
+  --radius-small: var(--radius-small);
+
+  --color-header-gray: var(--color-header-gray);
+  --color-header-gray-hover: var(--color-header-gray-hover);
+  --color-border-gray: var(--color-border-gray);
+  --color-input-dark: var(--color-input-dark);
+  --color-input-dark-hover: var(--color-input-dark-hover);
+  --color-slider: var(--color-slider);
+  --color-slider-light: var(--color-slider-light);
+  --color-orange-custom: var(--color-orange-custom);
 }
 
 :root {
@@ -81,9 +167,99 @@
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
 
-  --main-blue: #1888b8;
+  --color-header-gray-hover: #272e39;
+  --color-header-gray: #20242c;
+  --color-border-gray: #1c1d20;
+  --color-input-dark: #101114;
+  --color-input-dark-hover: #343437;
+  --color-slider: #50a7cc;
+  --color-slider-light: #43c7ff;
+  --color-header-blue: #1888b8;
+  --color-header-blue-hover: #0aa9ed;
+  --color-header: #181a1e;
+  --color-main: #131417;
+  --color-tarpaulin-grey: #4c4f49;
+  --color-gray: #adaeaf;
+  --color-input-search: #17191d;
+  --color-bg-logo: #5d6676;
+  --color-bg-logo-hover: #8c93a3;
+  /* Цвета качества */
 
-  --text-md: 15px;
+  --color-FN: #15252a;
+  --color-FN-hover: #162c32;
+
+  --color-MW: #2d3521;
+  --color-MW-hover: #353f24;
+
+  --color-FT: #453f21;
+  --color-FT-hover: #5a5125;
+
+  --color-WW: #452e21;
+  --color-WW-hover: #5a3926;
+
+  --color-BS: #42221f;
+  --color-BS-hover: #562823;
+
+  /* Цвета раритетности */
+  --color-consumer-grade: #8a909a;
+  --color-consumer-grade-hover: #bac2cf;
+
+  --color-industrial-grade: #4175a5;
+  --color-industrial-grade-hover: #559fe2;
+
+  --color-mil-spec-grade: #253db6;
+  --color-mil-spec-grade-hover: #2d4ffa;
+
+  --color-restricted: #5c3f98;
+  --color-restricted-hover: #7b51cf;
+
+  --color-classified: #7a3a86;
+  --color-classified-hover: #a64bb5;
+
+  --color-covert: #a60d07;
+  --color-covert-hover: #e40a00;
+
+  --color-contraband: #b88d0d;
+  --color-contraband-hover: #ffc109;
+
+  --color-master: #a60d07;
+  --color-master-hover: #e40a00;
+
+  --color-superior: #7a3a86;
+  --color-superior-hover: #a64bb5;
+
+  --color-exceptional: #5c3f98;
+  --color-exceptional-hover: #7b51cf;
+
+  --color-distinguished: #253db6;
+  --color-distinguished-hover: #2d4ffa;
+
+  --color-base-grade: #888e98;
+  --color-base-grade-hover: #bac2cf;
+
+  --color-high-grade: #253db6;
+  --color-high-grade-hover: #2c4ef5;
+
+  --color-remarkable: #5c3f98;
+  --color-remarkable-hover: #7b51cf;
+
+  --color-exotic: #5c3f98;
+  --color-exotic-hover: #7b51cf;
+
+  --color-extraordinary: #a60d07;
+  --color-extraordinary-hover: #e40a00;
+
+  --color-orange-custom: #f24c05;
+  --text-md: 14px;
+
+  --radius-small: 4px;
+
+  .triangle-square {
+    margin-top: 4px;
+    width: 11px; /* 5 на 5, в пикселях */
+    height: 11px; /* 5 на 5, в пикселях */
+    clip-path: polygon(0% 0%, 100% 0%, 0% 100%); /* Обрезаем по диагонали */
+  }
 }
 
 .dark {
@@ -127,4 +303,8 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+.text-wrap {
+  word-wrap: break-word; /* Для старых браузеров */
+  overflow-wrap: break-word; /* Для современных браузеров */
 }
