@@ -48,12 +48,18 @@
   --color-header-blue-hover: var(--color-header-blue-hover);
   --color-header: var(--color-header);
   --color-main: var(--color-main);
-
+  --color-filter-dropdown: var(--color-filter-dropdown);
+  --color-filter-dropdown-hover: var(--color-filter-dropdown-hover);
+  --color-filter-dropdown-focus: var(--color-filter-dropdown-focus);
   --color-tarpaulin-grey: var(--color-tarpaulin-grey);
   --color-gray: var(--color-gray);
   --color-input-search: var(--color-input-search);
   --color-bg-logo: var(--color-bg-logo);
   --color-bg-logo-hover: var(--color-bg-logo-hover);
+  --color-gray-navigation-hover: var(--color-gray-navigation-hover);
+
+  --color-filter-outline: var(--color-filter-outline);
+  --color-filter-outline-hover: var(--color-filter-outline-hover);
   /* Цвета качества */
 
   --color-FN: var(--color-FN);
@@ -177,12 +183,18 @@
   --color-header-blue: #1888b8;
   --color-header-blue-hover: #0aa9ed;
   --color-header: #181a1e;
+  --color-gray-navigation-hover: #23262c;
   --color-main: #131417;
+  --color-filter-dropdown: #1c1f26;
+  --color-filter-dropdown-hover: #202227;
+  --color-filter-dropdown-focus: #232934;
   --color-tarpaulin-grey: #4c4f49;
   --color-gray: #adaeaf;
   --color-input-search: #17191d;
   --color-bg-logo: #5d6676;
   --color-bg-logo-hover: #8c93a3;
+  --color-filter-outline: #242527;
+  --color-filter-outline-hover: #36373a;
   /* Цвета качества */
 
   --color-FN: #15252a;

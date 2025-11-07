@@ -1,4 +1,4 @@
-import { CATEGORY_FILTER } from "@/app/config/pages.config";
+import { CATEGORY_FILTER } from "@/app/config/filters.config";
 import { cn } from "@/lib/utils";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { SetStateAction, useState } from "react";

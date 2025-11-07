@@ -1,8 +1,8 @@
-import { STICKERS_FILTER } from "@/app/config/pages.config";
+import { STICKERS_FILTER } from "@/app/config/filters.config";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
 import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
-import { SetStateAction, useEffect, useRef, useState } from "react";
+import { SetStateAction, useRef, useState } from "react";
 
 interface IProps {
   value: string[];
@@ -26,10 +26,9 @@ export const StickerFilter = ({ value, setValue }: IProps) => {
       <p className="mb-2 text-white/50">Наклейки и брелки</p>
       <div className="relative">
         <input
-          onKeyDown={(key) => {
-            console.log(key.code);
-            key.code == "Escape" ? resetVisible() : setIsVisible(true);
-          }}
+          onKeyDown={(key) =>
+            key.code == "Escape" ? resetVisible() : setIsVisible(true)
+          }
           onFocus={() => setIsVisible(true)}
           value={input}
           onChange={(e) => setInput(e.target.value)}

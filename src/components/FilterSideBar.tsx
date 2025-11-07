@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { QualityFilter } from "./QualityFilter";
 import { RareFilter } from "./RareFilter";
 import { PriceFilter } from "./PriceFilter";
@@ -8,8 +8,11 @@ import { PhaseFilter } from "./PhaseFilter";
 import { CategoryFilter } from "./CategoryFilter";
 import { StickerFilter } from "./StickerFilter";
 import { SideBarFooter } from "./SideBarFooter";
-
-export const FilterSideBar = () => {
+interface IProps {
+  filters: string[];
+  setFilters: React.Dispatch<SetStateAction<string[]>>;
+}
+export const FilterSideBar = ({ filters, setFilters }: IProps) => {
   const [value, setValue] = useState<number[]>([0, 1000000]);
   const [qualityFilters, setQualityFilters] = useState<string[]>([]);
   const [rareFilters, setRareFilters] = useState<string[]>([]);
@@ -23,9 +26,12 @@ export const FilterSideBar = () => {
     setPhaseFilters([]);
     setCategoryFilter([]);
     setStickerFilter([]);
+
+    setFilters([]);
   }
 
   const countFilters =
+    filters.length +
     qualityFilters.length +
     rareFilters.length +
     phaseFilters.length +

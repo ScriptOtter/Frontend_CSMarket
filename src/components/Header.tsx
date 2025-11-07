@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <header className="min-h-[60px] items-center bg-header">
-      <div className="flex justify-between items-center  font-semibold">
+      <div className="flex flex-wrap justify-between items-center  font-semibold">
         <div className="flex items-center space-x-6 ">
           <div className="bg-header-blue h-[60px] w-[60px] flex items-center justify-center">
             <House size={40} className="text-white" />

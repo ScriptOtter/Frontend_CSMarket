@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { SetStateAction, useState } from "react";
 import { Checkbox } from "./ui/checkbox";
-import { RARE_FILTER } from "@/app/config/pages.config";
+import { RARE_FILTER } from "@/app/config/filters.config";
 interface IProps {
   value: string[];
   setValue: React.Dispatch<SetStateAction<string[]>>;
