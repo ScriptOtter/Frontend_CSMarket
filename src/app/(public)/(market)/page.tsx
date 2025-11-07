@@ -5,14 +5,19 @@ import { FilterSideBar } from "@/components/FilterSideBar";
 import { GunFilters } from "@/components/GunFilters";
 import { GunsFilter } from "@/components/GunsFilter";
 import Header from "@/components/Header";
+import { SkinItem } from "@/components/SkinItem";
+import { SkinsNotFound } from "@/components/SkinsNotFound";
+import { ISkin, skinData } from "@/data/skins.data";
 import { Search } from "lucide-react";
 import { useState } from "react";
 
 const MarketPage = () => {
+  console.log(skinData);
   const [input, setInput] = useState<string>("");
   const [sideBarFilters, setSideBarFilters] = useState<string[]>([]);
   const [gunFilters, setGunFilters] = useState<string[]>([]);
   const [filter, setFilter] = useState<string>("");
+  const [skins, setSkins] = useState<ISkin[]>(skinData);
   const addFilter = () => {
     setGunFilters((prev) => [...prev, input]);
     setInput("");
@@ -26,7 +31,7 @@ const MarketPage = () => {
         <div className="mt-8 mx-8">
           <GunsFilter filters={gunFilters} setFilters={setGunFilters} />
           <div className="flex flex-wrap gap-y-[10.5px]">
-            <div className="relative  grow min-w-[380px] max-w-[530px] mr-2 ">
+            <div className="relative grow min-w-[380px] max-w-[530px] mr-2 ">
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -45,6 +50,12 @@ const MarketPage = () => {
 
             <GunFilters filters={gunFilters} setFilters={setGunFilters} />
           </div>
+
+          {skins.length > 0 ? (
+            skins.map((item) => <SkinItem skin={item} key={item.id} />)
+          ) : (
+            <SkinsNotFound />
+          )}
         </div>
       </main>
     </>

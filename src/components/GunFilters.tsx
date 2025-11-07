@@ -7,7 +7,6 @@ interface IProps {
 }
 
 export const GunFilters = ({ filters, setFilters }: IProps) => {
-  console.log(filters);
   return (
     <>
       {filters.map((item) => (

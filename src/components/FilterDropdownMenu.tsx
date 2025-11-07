@@ -21,7 +21,7 @@ export const FilterDropdownMenu = ({ setFilters }: IProps) => {
   return (
     <DropdownMenu onOpenChange={() => setIsOpen((prev) => !prev)}>
       <DropdownMenuTrigger
-        className="mr-3 bg-filter-dropdown text-white/60 hover:bg-filter-dropdown-hover data-[state=open]:bg-filter-dropdown-focus data-[state=open]:text-white px-2.5 rounded-small"
+        className="mr-3 flex-none bg-filter-dropdown text-white/60 hover:bg-filter-dropdown-hover data-[state=open]:bg-filter-dropdown-focus data-[state=open]:text-white px-2.5 rounded-small"
         asChild
       >
         <div className="flex mr-1.5 group">
