@@ -8,8 +8,12 @@ import { FaSteam } from "react-icons/fa";
 import { LangDropdownMenu } from "./LangDropdownMenu";
 import { CurrencyDropdownMenu } from "./СurrencyDropdownMenu";
 import { NAVIGATION_MENU } from "@/app/config/pages.config";
+import { shopingCardStore } from "@/store/store";
+import { ISkin } from "@/data/skins.data";
+import { observer } from "mobx-react";
+import { CartDropdownMenu } from "./CartDropdownMenu";
 
-const Header = () => {
+const Header = observer(() => {
   const currentPath = usePathname();
 
   return (
@@ -48,13 +52,13 @@ const Header = () => {
             <FaSteam className="text-white" size={16} />
             <p className="text-md font-bold text-white">Войти через Steam</p>
           </div>
-          <div className="bg-tarpaulin-grey h-[60px] w-[60px] flex items-center justify-center">
-            <ShoppingCart className="text-white" />
+          <div className="h-[60px] w-[60px]">
+            <CartDropdownMenu />
           </div>
         </div>
       </div>
     </header>
   );
-};
+});
 
 export default Header;

@@ -6,9 +6,10 @@ import {
   SMG_FILTER,
   SNIPER_RIFLE_FILTER,
 } from "@/app/config/filters.config";
+import { ICart } from "@/app/types/cart.types";
 import { ISkin } from "@/data/skins.data";
 import { makeAutoObservable } from "mobx";
-export class FilterStore {
+class FilterStore {
   private skins: ISkin[] = [];
   private priceFilter: number[] = [0, 1000000];
   private qualityFilters: string[] = [];
@@ -297,3 +298,26 @@ export class FilterStore {
   }
 }
 export const filterStore = new FilterStore();
+
+class ShopingCartStore {
+  private cart: ICart = { items: [] };
+  constructor() {
+    makeAutoObservable(this);
+  }
+  getCart() {
+    return this.cart;
+  }
+  setCartItem(skin: ISkin) {
+    const exists = this.cart.items.some((item) => item.id === skin.id);
+    if (exists) {
+      this.cart.items = this.cart.items.filter((i) => i.id !== skin.id);
+    } else {
+      this.cart.items.push(skin);
+    }
+  }
+
+  clearCart() {
+    this.cart.items = [];
+  }
+}
+export const shopingCardStore = new ShopingCartStore();

@@ -41,9 +41,10 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-
+  --color-cart-item: var(--color-cart-item);
   --text-md: var(--text-md);
-
+  --color-cart-green: var(--color-cart-green);
+  --color-cart-green-hover: var(--color-cart-green-hover);
   --color-header-blue: var(--color-header-blue);
   --color-header-blue-hover: var(--color-header-blue-hover);
   --color-header: var(--color-header);
@@ -172,10 +173,12 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
-
+  --color-cart-item: #1b1e22;
   --color-header-gray-hover: #272e39;
   --color-header-gray: #20242c;
   --color-border-gray: #1c1d20;
+  --color-cart-green: #98b818;
+  --color-cart-green-hover: #a6cc0f;
   --color-input-dark: #101114;
   --color-input-dark-hover: #343437;
   --color-slider: #50a7cc;

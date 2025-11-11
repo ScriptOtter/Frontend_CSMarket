@@ -72,7 +72,7 @@ const rarities = [
 
 const categories = ["Common", "StatTrak™", "Souvenir"];
 
-for (let i = 0; i < 10000; i++) {
+for (let i = 0; i < 100; i++) {
   const skin = {
     id: `skin_${i + 1}`,
     name: skinNames[Math.floor(Math.random() * skinNames.length)],
