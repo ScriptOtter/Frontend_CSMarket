@@ -18,7 +18,7 @@ export const FilterSideBar = observer(() => {
   const phaseFilters = filterStore.getPhaseFilters();
   const categoryFilter = filterStore.getCategoryFilters();
   const typesFilters = filterStore.getTypeFilters();
-
+  const nameFilters = filterStore.getNameFilters();
   const resetFilters = () => filterStore.resetAllFilters();
 
   const countFilters =
@@ -28,6 +28,7 @@ export const FilterSideBar = observer(() => {
     phaseFilters.length +
     categoryFilter.length +
     stickerFilter.length +
+    nameFilters.length +
     Number(!!priceFilter[0] || priceFilter[1] !== 1000000);
   return (
     <div className="border-r border-border-gray text-xs">
