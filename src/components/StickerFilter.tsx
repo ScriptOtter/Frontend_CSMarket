@@ -1,25 +1,19 @@
 import { STICKERS_FILTER } from "@/app/config/filters.config";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
 import { cn } from "@/lib/utils";
+import { filterStore } from "@/store/store";
 import { Search } from "lucide-react";
+import { observer } from "mobx-react";
 import { SetStateAction, useRef, useState } from "react";
 
-interface IProps {
-  value: string[];
-  setValue: React.Dispatch<SetStateAction<string[]>>;
-}
-
-export const StickerFilter = ({ value, setValue }: IProps) => {
+export const StickerFilter = observer(() => {
   const divRef = useRef<HTMLDivElement>(null);
   const { isVisible, setIsVisible, resetVisible } = useClickOutside(divRef);
   const [input, setInput] = useState<string>("");
-  const onCheckedFilter = (filter: string) => {
-    if (value.includes(filter)) {
-      setValue((prev) => [...prev.filter((item) => item !== filter)]);
-    } else {
-      setValue((prev) => [...prev, filter]);
-    }
-  };
+
+  const stickerFilters = filterStore.getStickerFilters();
+  const setStickerFilters = (filter: string) =>
+    filterStore.setStickerFilters(filter);
 
   return (
     <div className="mb-4.5">
@@ -39,18 +33,18 @@ export const StickerFilter = ({ value, setValue }: IProps) => {
           size={20}
           className="text-white/50 absolute top-[10.5px] right-[17px] rotate-90"
         />
-        {isVisible && STICKERS_FILTER.length !== value.length && (
+        {isVisible && STICKERS_FILTER.length !== stickerFilters.length && (
           <div
             ref={divRef}
             className="absolute bg-input-search top-11 max-h-[200px] z-1 left-0 w-full px-2 overflow-y-auto overflow-x-hidden space-y-4 py-2"
           >
             {STICKERS_FILTER.map((item) => {
-              if (!value.includes(item.id))
+              if (!stickerFilters.includes(item.id))
                 return (
                   <div
                     key={item.id}
                     onClick={() => {
-                      onCheckedFilter(item.id);
+                      setStickerFilters(item.id);
                       resetVisible();
                     }}
                     className="flex justify-between cursor-pointer relative"
@@ -63,7 +57,7 @@ export const StickerFilter = ({ value, setValue }: IProps) => {
                     />
                     <p
                       className={cn(
-                        value.includes(item.id)
+                        stickerFilters.includes(item.id)
                           ? "text-white"
                           : "text-white/50",
                         "text-wrap  hover:text-white"
@@ -80,14 +74,14 @@ export const StickerFilter = ({ value, setValue }: IProps) => {
       <div className="w-full grid grid-cols-3 mt-2">
         {STICKERS_FILTER.map((item) => {
           // Проверяем, есть ли item.id в массиве value
-          if (value.includes(item.id)) {
+          if (stickerFilters.includes(item.id)) {
             return (
               <img
                 key={item.id}
                 src={item.image}
                 alt={item.name}
                 className="scale-90 cursor-pointer rounded-small bg-header-gray hover:bg-header-gray-hover"
-                onClick={() => onCheckedFilter(item.id)}
+                onClick={() => setStickerFilters(item.id)}
               />
             );
           }
@@ -96,4 +90,4 @@ export const StickerFilter = ({ value, setValue }: IProps) => {
       </div>
     </div>
   );
-};
+});

@@ -8,6 +8,8 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import { filterStore } from "@/store/store";
+import { observer } from "mobx-react";
 import { SetStateAction } from "react";
 
 interface DataFilter {
@@ -17,36 +19,13 @@ interface DataFilter {
 
 interface IProps {
   dataFilter: DataFilter;
-  value: string[];
-  setValue: React.Dispatch<SetStateAction<string[]>>;
 }
 
-export const GunsNavigationFilter = ({
-  dataFilter,
-  value,
-  setValue,
-}: IProps) => {
-  const onCheckedFilter = (filter: string) => {
-    if (dataFilter.title !== "Пулемет" && dataFilter.title !== "Другое") {
-      if (value.includes(filter)) {
-        setValue((prev) => [...prev.filter((item) => item !== filter)]);
-      } else if (
-        filter !== dataFilter.guns[0] &&
-        !value.includes(dataFilter.guns[0])
-      ) {
-        setValue((prev) => [...prev, filter]);
-      } else if (filter === dataFilter.guns[0]) {
-        setValue((prev) => [
-          ...prev.filter((i) => !dataFilter.guns.includes(i)),
-          filter,
-        ]);
-      }
-    } else if (value.includes(filter)) {
-      setValue((prev) => [...prev.filter((item) => item !== filter)]);
-    } else {
-      setValue((prev) => [...prev, filter]);
-    }
-  };
+export const GunsNavigationFilter = observer(({ dataFilter }: IProps) => {
+  const value = filterStore.getTypeFilters();
+  const setValue = (filter: string) => filterStore.setTypeFilters(filter);
+
+  console.log(value);
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -60,7 +39,7 @@ export const GunsNavigationFilter = ({
               {dataFilter.guns.map((name) => (
                 <li
                   key={name}
-                  onClick={() => onCheckedFilter(name)}
+                  onClick={() => setValue(name)}
                   className={cn(
                     value.includes(name)
                       ? "bg-gray-navigation-hover text-white"
@@ -78,4 +57,4 @@ export const GunsNavigationFilter = ({
       </NavigationMenuList>
     </NavigationMenu>
   );
-};
+});

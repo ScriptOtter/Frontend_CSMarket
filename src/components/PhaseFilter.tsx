@@ -3,22 +3,21 @@ import { cn } from "@/lib/utils";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { SetStateAction, useState } from "react";
 import { Checkbox } from "./ui/checkbox";
+import { observer } from "mobx-react";
+import { filterStore } from "@/store/store";
 
 interface IProps {
   value: string[];
   setValue: React.Dispatch<SetStateAction<string[]>>;
 }
 
-export const PhaseFilter = ({ value, setValue }: IProps) => {
+export const PhaseFilter = observer(() => {
   const [visible, setVisible] = useState<boolean>(true);
-  const onCheckedFilter = (filter: string) => {
-    if (value.includes(filter)) {
-      setValue((prev) => [...prev.filter((item) => item !== filter)]);
-    } else {
-      setValue((prev) => [...prev, filter]);
-    }
-  };
 
+  const phaseFilters = filterStore.getPhaseFilters();
+  const setPhaseFilters = (filter: string) =>
+    filterStore.setPhaseFilters(filter);
+  const resetPhaseFilters = () => filterStore.resetPhaseFilters();
   return (
     <div
       className={cn(
@@ -31,14 +30,14 @@ export const PhaseFilter = ({ value, setValue }: IProps) => {
         className="flex justify-between cursor-pointer"
       >
         <p className="hover:text-white mb-5">
-          Фазы {!!value.length && `(${value.length})`}
+          Фазы {!!phaseFilters.length && `(${phaseFilters.length})`}
         </p>
         <div className="flex space-x-2">
-          {!!value.length && (
+          {!!phaseFilters.length && (
             <p
               onClick={(e) => {
                 e.stopPropagation();
-                setValue([]);
+                resetPhaseFilters();
               }}
               className="text-orange-custom hover:text-white duration-100"
             >
@@ -61,13 +60,13 @@ export const PhaseFilter = ({ value, setValue }: IProps) => {
         {PHASE_FILTER.map((item) => (
           <div
             key={item.id}
-            onClick={() => onCheckedFilter(item.id)}
+            onClick={() => setPhaseFilters(item.id)}
             hidden={!visible}
             className="grid grid-cols-[1fr_5fr] space-x-2.5 group w-full space-y-4.5 cursor-pointer"
           >
             <Checkbox
               id={item.id}
-              checked={value.includes(item.id)}
+              checked={phaseFilters.includes(item.id)}
               className="cursor-pointer data-[state=checked]:text-slider  border data-[state=checked]:border-2  border-white/10 bg-input-dark group-hover:bg-input-dark-hover data-[state=checked]:bg-white/5 data-[state=checked]:border-input-dark-hover w-5 h-5 group-hover:border-white/5 duration-500"
             />
 
@@ -79,4 +78,4 @@ export const PhaseFilter = ({ value, setValue }: IProps) => {
       </div>
     </div>
   );
-};
+});

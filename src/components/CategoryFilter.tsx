@@ -3,22 +3,16 @@ import { cn } from "@/lib/utils";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { SetStateAction, useState } from "react";
 import { Checkbox } from "./ui/checkbox";
+import { observer } from "mobx-react";
+import { filterStore } from "@/store/store";
 
-interface IProps {
-  value: string[];
-  setValue: React.Dispatch<SetStateAction<string[]>>;
-}
-
-export const CategoryFilter = ({ value, setValue }: IProps) => {
+export const CategoryFilter = observer(() => {
   const [visible, setVisible] = useState<boolean>(true);
-  const onCheckedFilter = (filter: string) => {
-    if (value.includes(filter)) {
-      setValue((prev) => [...prev.filter((item) => item !== filter)]);
-    } else {
-      setValue((prev) => [...prev, filter]);
-    }
-  };
 
+  const categoryFilters = filterStore.getCategoryFilters();
+  const setCategoryFilters = (filter: string) =>
+    filterStore.setCategoryFilters(filter);
+  const resetCategoryFilters = () => filterStore.resetCategoryFilters();
   return (
     <div
       className={cn(
@@ -31,14 +25,14 @@ export const CategoryFilter = ({ value, setValue }: IProps) => {
         className="flex justify-between cursor-pointer"
       >
         <p className="hover:text-white mb-5">
-          Категория {!!value.length && `(${value.length})`}
+          Категория {!!categoryFilters.length && `(${categoryFilters.length})`}
         </p>
         <div className="flex space-x-2">
-          {!!value.length && (
+          {!!categoryFilters.length && (
             <p
               onClick={(e) => {
                 e.stopPropagation();
-                setValue([]);
+                resetCategoryFilters();
               }}
               className="text-orange-custom hover:text-white duration-100"
             >
@@ -61,13 +55,13 @@ export const CategoryFilter = ({ value, setValue }: IProps) => {
         {CATEGORY_FILTER.map((item) => (
           <div
             key={item.id}
-            onClick={() => onCheckedFilter(item.id)}
+            onClick={() => setCategoryFilters(item.id)}
             hidden={!visible}
             className="grid grid-cols-[1fr_5fr] space-x-2.5 group w-full space-y-4.5 cursor-pointer"
           >
             <Checkbox
               id={item.id}
-              checked={value.includes(item.id)}
+              checked={categoryFilters.includes(item.id)}
               className="cursor-pointer data-[state=checked]:text-slider  border data-[state=checked]:border-2  border-white/10 bg-input-dark group-hover:bg-input-dark-hover data-[state=checked]:bg-white/5 data-[state=checked]:border-input-dark-hover w-5 h-5 group-hover:border-white/5 duration-500"
             />
 
@@ -79,4 +73,4 @@ export const CategoryFilter = ({ value, setValue }: IProps) => {
       </div>
     </div>
   );
-};
+});

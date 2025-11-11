@@ -1,6 +1,5 @@
 "use client";
 
-import { SetStateAction, useState } from "react";
 import { QualityFilter } from "./QualityFilter";
 import { RareFilter } from "./RareFilter";
 import { PriceFilter } from "./PriceFilter";
@@ -8,38 +7,30 @@ import { PhaseFilter } from "./PhaseFilter";
 import { CategoryFilter } from "./CategoryFilter";
 import { StickerFilter } from "./StickerFilter";
 import { SideBarFooter } from "./SideBarFooter";
-interface IProps {
-  filters: string[];
-  setFilters: React.Dispatch<SetStateAction<string[]>>;
-}
-export const FilterSideBar = ({ filters, setFilters }: IProps) => {
-  const [value, setValue] = useState<number[]>([0, 1000000]);
-  const [qualityFilters, setQualityFilters] = useState<string[]>([]);
-  const [rareFilters, setRareFilters] = useState<string[]>([]);
-  const [phaseFilters, setPhaseFilters] = useState<string[]>([]);
-  const [categoryFilter, setCategoryFilter] = useState<string[]>([]);
-  const [stickerFilter, setStickerFilter] = useState<string[]>([]);
-  function resetFilters() {
-    setValue([0, 1000000]);
-    setQualityFilters([]);
-    setRareFilters([]);
-    setPhaseFilters([]);
-    setCategoryFilter([]);
-    setStickerFilter([]);
+import { filterStore } from "@/store/store";
+import { observer } from "mobx-react";
 
-    setFilters([]);
-  }
+export const FilterSideBar = observer(() => {
+  const stickerFilter = filterStore.getStickerFilters();
+  const priceFilter = filterStore.getPriceFilter();
+  const qualityFilters = filterStore.getQualityFilters();
+  const rareFilters = filterStore.getRareFilters();
+  const phaseFilters = filterStore.getPhaseFilters();
+  const categoryFilter = filterStore.getCategoryFilters();
+  const typesFilters = filterStore.getTypeFilters();
+
+  const resetFilters = () => filterStore.resetAllFilters();
 
   const countFilters =
-    filters.length +
+    typesFilters.length +
     qualityFilters.length +
     rareFilters.length +
     phaseFilters.length +
     categoryFilter.length +
     stickerFilter.length +
-    Number(!!value[0] || value[1] !== 1000000);
+    Number(!!priceFilter[0] || priceFilter[1] !== 1000000);
   return (
-    <div className="w-full border-r border-border-gray text-xs">
+    <div className="border-r border-border-gray text-xs">
       <div className="px-7 flex justify-between py-[21px] mb-6.5 border-b border-border-gray w-full">
         <div className="w-full flex justify-between">
           <div className="flex space-x-1">
@@ -63,15 +54,15 @@ export const FilterSideBar = ({ filters, setFilters }: IProps) => {
       </div>
       <div className="max-h-[90vh] overflow-y-auto overflow-x-hidden pr-5">
         <div className="ml-7 mb-80">
-          <PriceFilter value={value} setValue={setValue} />
-          <QualityFilter value={qualityFilters} setValue={setQualityFilters} />
-          <RareFilter value={rareFilters} setValue={setRareFilters} />
-          <PhaseFilter value={phaseFilters} setValue={setPhaseFilters} />
-          <CategoryFilter value={categoryFilter} setValue={setCategoryFilter} />
-          <StickerFilter value={stickerFilter} setValue={setStickerFilter} />
+          <PriceFilter />
+          <QualityFilter />
+          <RareFilter />
+          <PhaseFilter />
+          <CategoryFilter />
+          <StickerFilter />
           <SideBarFooter />
         </div>
       </div>
     </div>
   );
-};
+});

@@ -16,10 +16,12 @@ export interface ISkin {
   image: string;
   purchase: number;
   price: number;
+  count: number;
   type: string;
   quality: string;
   rarity: string;
   category: string;
+  phase: string;
   stickers: string[];
 }
 export const skinData: ISkin[] = [];
@@ -60,12 +62,12 @@ const qualities = [
 ];
 
 const rarities = [
-  "Common",
-  "Uncommon",
-  "Rare",
-  "Mythical",
-  "Legendary",
-  "Ancient",
+  "Consumer-Grade",
+  "Industrial-Grade",
+  "Mil-Spec-Grade",
+  "Restricted",
+  "Classified",
+  "Covert",
 ];
 
 const categories = ["Common", "StatTrak™", "Souvenir"];
@@ -79,9 +81,11 @@ for (let i = 0; i < 100; i++) {
     price: Math.floor(Math.random() * 5 * (Math.random() * 10000)),
     type: weaponTypes[Math.floor(Math.random() * weaponTypes.length)],
     quality: qualities[Math.floor(Math.random() * qualities.length)],
+    count: Math.floor(Math.random() * skinNames.length),
     rarity: rarities[Math.floor(Math.random() * rarities.length)],
     category: categories[Math.floor(Math.random() * categories.length)],
     float: Math.random(),
+    phase: "",
     stickers: [],
   };
 

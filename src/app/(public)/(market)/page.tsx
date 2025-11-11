@@ -1,65 +1,87 @@
 "use client";
 
+import { useFilter } from "@/app/hooks/useFilter";
 import { FilterDropdownMenu } from "@/components/FilterDropdownMenu";
 import { FilterSideBar } from "@/components/FilterSideBar";
 import { GunFilters } from "@/components/GunFilters";
 import { GunsFilter } from "@/components/GunsFilter";
 import Header from "@/components/Header";
+import { InputFilterName } from "@/components/InputFilterName";
 import { SkinItem } from "@/components/SkinItem";
 import { SkinsNotFound } from "@/components/SkinsNotFound";
-import { ISkin, skinData } from "@/data/skins.data";
-import { Search } from "lucide-react";
-import { useState } from "react";
+import { skinData } from "@/data/skins.data";
+import { filterStore } from "@/store/store";
+import { observer } from "mobx-react";
 
-const MarketPage = () => {
-  console.log(skinData);
-  const [input, setInput] = useState<string>("");
-  const [sideBarFilters, setSideBarFilters] = useState<string[]>([]);
-  const [gunFilters, setGunFilters] = useState<string[]>([]);
-  const [filter, setFilter] = useState<string>("");
-  const [skins, setSkins] = useState<ISkin[]>(skinData);
-  const addFilter = () => {
-    setGunFilters((prev) => [...prev, input]);
-    setInput("");
-  };
+const MarketPage = observer(() => {
+  const [
+    priceFilters,
+    qualityFilters,
+    rareFilters,
+    phaseFilters,
+    categoryFilters,
+    stickerFilters,
+    typeFilters,
+    nameFilters,
+    classicFilters,
+  ] = [
+    filterStore.getPriceFilter(),
+    filterStore.getQualityFilters(),
+    filterStore.getRareFilters(),
+    filterStore.getPhaseFilters(),
+    filterStore.getCategoryFilters(),
+    filterStore.getStickerFilters(),
+    filterStore.getTypeFilters(),
+    filterStore.getNameFilters(),
+    filterStore.getClassicFilter(),
+  ];
+  const skins = useFilter(
+    skinData,
+    priceFilters,
+    qualityFilters,
+    rareFilters,
+    phaseFilters,
+    categoryFilters,
+    stickerFilters,
+    typeFilters,
+    nameFilters,
+    classicFilters
+  );
+
   return (
     <>
       <Header />
       <main className="text-white grid grid-cols-[308px_1fr]">
-        <FilterSideBar filters={gunFilters} setFilters={setGunFilters} />
+        <FilterSideBar />
 
-        <div className="mt-8 mx-8">
-          <GunsFilter filters={gunFilters} setFilters={setGunFilters} />
-          <div className="flex flex-wrap gap-y-[10.5px]">
-            <div className="relative grow min-w-[380px] max-w-[530px] mr-2 ">
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.code === "Enter" && addFilter()}
-                placeholder="Быстрый поиск"
-                className="text-md font-light w-full h-[42px] py-3 pl-3.5 rounded-small bg-input-dark border border-border-gray hover:border-input-dark-hover focus:border-input-dark-hover duration-100 placeholder:text-white/50"
-              />
-              <Search
-                onClick={() => addFilter()}
-                size={20}
-                className="text-white/50 absolute top-[10.5px] right-3 rotate-90"
-              />
+        <div className="mt-8 mx-8 h-full flex">
+          <div className="w-full h-full ">
+            <GunsFilter />
+            <div className="flex flex-wrap gap-y-[10.5px] mb-6.5">
+              <InputFilterName />
+              <FilterDropdownMenu />
+              <GunFilters />
             </div>
 
-            <FilterDropdownMenu setFilters={setFilter} />
-
-            <GunFilters filters={gunFilters} setFilters={setGunFilters} />
+            {skins.length > 0 ? (
+              <div
+                className="grid gap-1.5 w-full"
+                style={{
+                  gridTemplateColumns: "repeat(auto-fill, minmax(155px, 1fr))",
+                }}
+              >
+                {skins.map((item) => (
+                  <SkinItem skin={item} key={item.id} />
+                ))}
+              </div>
+            ) : (
+              <SkinsNotFound />
+            )}
           </div>
-
-          {skins.length > 0 ? (
-            skins.map((item) => <SkinItem skin={item} key={item.id} />)
-          ) : (
-            <SkinsNotFound />
-          )}
         </div>
       </main>
     </>
   );
-};
+});
 
 export default MarketPage;

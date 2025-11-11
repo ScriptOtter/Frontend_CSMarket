@@ -2,55 +2,55 @@ import { ArrowDownWideNarrow } from "lucide-react";
 
 export const FILTER_DROPDOWN_MENU = [
   {
-    id: "Default",
+    id: "default",
     name: "По умолчанию",
     icon: ArrowDownWideNarrow,
     className: "",
   },
   {
-    id: "Popularity",
+    id: "popularityDesc",
     name: "Популярность",
     icon: ArrowDownWideNarrow,
     className: "",
   },
   {
-    id: "Popularity",
+    id: "popularityAsc",
     name: "Популярность",
     icon: ArrowDownWideNarrow,
     className: "rotate-180 scale-x-[-1]",
   },
   {
-    id: "Price",
+    id: "priceDesc",
     name: "Цена",
     icon: ArrowDownWideNarrow,
     className: "",
   },
   {
-    id: "Price",
+    id: "priceAsc",
     name: "Цена",
     icon: ArrowDownWideNarrow,
     className: "rotate-180 scale-x-[-1]",
   },
   {
-    id: "Profit",
+    id: "profitDesc",
     name: "Выгода",
     icon: ArrowDownWideNarrow,
     className: "",
   },
   {
-    id: "Profit",
+    id: "profitAsc",
     name: "Выгода",
     icon: ArrowDownWideNarrow,
     className: "rotate-180 scale-x-[-1]",
   },
   {
-    id: "Count",
+    id: "countDesc",
     name: "Количество",
     icon: ArrowDownWideNarrow,
     className: "",
   },
   {
-    id: "Count",
+    id: "countAsc",
     name: "Количество",
     icon: ArrowDownWideNarrow,
     className: "rotate-180 scale-x-[-1]",
@@ -59,30 +59,35 @@ export const FILTER_DROPDOWN_MENU = [
 
 export const QUALITY_FILTER = [
   {
+    id: "Factory New",
     name: "Прямо с завода",
     short: "FN",
     className:
       "text-[9px] flex items-center justify-center w-5 h-5 bg-FN group-hover:bg-FN-hover",
   },
   {
+    id: "Minimal Wear",
     name: "Немного поношенное",
     short: "MW",
     className:
       "text-[8px] flex items-center justify-center w-5 h-5 bg-FN bg-MW group-hover:bg-MW-hover",
   },
   {
+    id: "Field-Tested",
     name: "После полевых испытаний",
     short: "FT",
     className:
       "text-[9px] flex items-center justify-center w-5 h-5 bg-FN bg-FT group-hover:bg-FT-hover",
   },
   {
+    id: "Well-Worn",
     name: "Поношенное",
     short: "WW",
     className:
       "text-[8px] flex items-center justify-center w-5 h-5 bg-FN bg-WW group-hover:bg-WW-hover",
   },
   {
+    id: "Battle-Scarred",
     name: "Закаленное в боях",
     short: "BS",
     className:
@@ -96,82 +101,82 @@ export const QUALITY_FILTER = [
 export const RARE_FILTER = [
   {
     name: "Ширпотреб",
-    filter_name: "consumer-grade",
+    filter_name: "Consumer-Grade",
     className: "bg-consumer-grade group-hover:bg-consumer-grade-hover",
   },
   {
     name: "Промышленное качество",
-    filter_name: "industrial-grade",
+    filter_name: "Industrial-Grade",
     className: "bg-industrial-grade group-hover:bg-industrial-grade-hover",
   },
   {
     name: "Армейское качество",
-    filter_name: "mil-spec-grade",
+    filter_name: "Mil-Spec-Grade",
     className: "bg-mil-spec-grade group-hover:bg-mil-spec-grade-hover",
   },
   {
     name: "Запрещенное",
-    filter_name: "restricted",
+    filter_name: "Restricted",
     className: "bg-restricted group-hover:bg-restricted-hover",
   },
   {
     name: "Засекреченное",
-    filter_name: "classified",
+    filter_name: "Classified",
     className: "bg-classified group-hover:bg-classified-hover",
   },
   {
     name: "Тайное",
-    filter_name: "covert",
+    filter_name: "Covert",
     className: "bg-covert group-hover:bg-covert-hover",
   },
   {
     name: "Контрабандное",
-    filter_name: "contraband",
+    filter_name: "Contraband",
     className: "bg-contraband group-hover:bg-contraband-hover",
   },
   {
     name: "Мастерский",
-    filter_name: "master",
+    filter_name: "Master",
     className: "bg-master group-hover:bg-master-hover",
   },
   {
     name: "Превосходный",
-    filter_name: "superior",
+    filter_name: "Superior",
     className: "bg-superior group-hover:bg-superior-hover",
   },
   {
     name: "Исключительный",
-    filter_name: "exceptional",
+    filter_name: "Exceptional",
     className: "bg-exceptional group-hover:bg-exceptional-hover",
   },
   {
     name: "Заслуженный",
-    filter_name: "distinguished",
+    filter_name: "Distinguished",
     className: "bg-distinguished group-hover:bg-distinguished-hover",
   },
   {
     name: "Базовый класс",
-    filter_name: "base-grade",
+    filter_name: "Base-Grade",
     className: "bg-base-grade group-hover:bg-base-grade-hover",
   },
   {
     name: "Высший класс",
-    filter_name: "high-grade",
+    filter_name: "High-Grade",
     className: "bg-high-grade group-hover:bg-high-grade-hover",
   },
   {
     name: "Примечательного типа",
-    filter_name: "remarkable",
+    filter_name: "Remarkable",
     className: "bg-remarkable group-hover:bg-remarkable-hover",
   },
   {
     name: "Экзотичного вида",
-    filter_name: "exotic",
+    filter_name: "Exotic",
     className: "bg-exotic group-hover:bg-exotic-hover",
   },
   {
     name: "Экстраординарного типа",
-    filter_name: "extraordinary",
+    filter_name: "Extraordinary",
     className: "bg-extraordinary group-hover:bg-extraordinary-hover",
   },
 ];

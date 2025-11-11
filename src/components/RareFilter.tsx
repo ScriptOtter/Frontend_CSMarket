@@ -3,22 +3,18 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { SetStateAction, useState } from "react";
 import { Checkbox } from "./ui/checkbox";
 import { RARE_FILTER } from "@/app/config/filters.config";
+import { filterStore } from "@/store/store";
+import { observer } from "mobx-react";
 interface IProps {
   value: string[];
   setValue: React.Dispatch<SetStateAction<string[]>>;
 }
 
-export const RareFilter = ({ value, setValue }: IProps) => {
+export const RareFilter = observer(() => {
   const [visible, setVisible] = useState<boolean>(true);
-
-  const onCheckedFilter = (filter: string) => {
-    if (value.includes(filter)) {
-      setValue((prev) => [...prev.filter((item) => item !== filter)]);
-    } else {
-      setValue((prev) => [...prev, filter]);
-    }
-  };
-
+  const value = filterStore.getRareFilters();
+  const setValue = (filter: string) => filterStore.setRareFilters(filter);
+  const resetRareFilters = () => filterStore.resetRareFilters();
   return (
     <div
       className={cn(
@@ -38,7 +34,7 @@ export const RareFilter = ({ value, setValue }: IProps) => {
             <p
               onClick={(e) => {
                 e.stopPropagation();
-                setValue([]);
+                resetRareFilters();
               }}
               className="text-orange-custom hover:text-white duration-100"
             >
@@ -61,7 +57,7 @@ export const RareFilter = ({ value, setValue }: IProps) => {
         {RARE_FILTER.map((item) => (
           <div
             key={item.filter_name}
-            onClick={() => onCheckedFilter(item.filter_name)}
+            onClick={() => setValue(item.filter_name)}
             hidden={!visible}
             className="grid grid-cols-[1fr_1fr_10fr] space-x-2.5 group w-full space-y-4.5 cursor-pointer"
           >
@@ -79,4 +75,4 @@ export const RareFilter = ({ value, setValue }: IProps) => {
       </div>
     </div>
   );
-};
+});

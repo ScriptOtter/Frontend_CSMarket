@@ -3,21 +3,14 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { SetStateAction, useState } from "react";
 import { Checkbox } from "./ui/checkbox";
 import { QUALITY_FILTER } from "@/app/config/filters.config";
+import { observer } from "mobx-react";
+import { filterStore } from "@/store/store";
 
-interface IProps {
-  value: string[];
-  setValue: React.Dispatch<SetStateAction<string[]>>;
-}
-
-export const QualityFilter = ({ value, setValue }: IProps) => {
+export const QualityFilter = observer(() => {
   const [visible, setVisible] = useState<boolean>(true);
-  const onCheckedFilter = (filter: string) => {
-    if (value.includes(filter)) {
-      setValue((prev) => [...prev.filter((item) => item !== filter)]);
-    } else {
-      setValue((prev) => [...prev, filter]);
-    }
-  };
+  const value = filterStore.getQualityFilters();
+  const setValue = (filter: string) => filterStore.setQualityFilters(filter);
+  const resetValue = () => filterStore.resetQualityFilters();
 
   return (
     <div
@@ -38,7 +31,7 @@ export const QualityFilter = ({ value, setValue }: IProps) => {
             <p
               onClick={(e) => {
                 e.stopPropagation();
-                setValue([]);
+                resetValue();
               }}
               className="text-orange-custom hover:text-white duration-100"
             >
@@ -61,13 +54,13 @@ export const QualityFilter = ({ value, setValue }: IProps) => {
         {QUALITY_FILTER.map((item) => (
           <div
             key={item.name}
-            onClick={() => onCheckedFilter(item.short || "NP")}
+            onClick={() => setValue(item.id || "NP")}
             hidden={!visible}
             className="grid grid-cols-[1fr_1fr_10fr] space-x-2.5 group w-full space-y-4.5 cursor-pointer"
           >
             <Checkbox
-              id={item.short}
-              checked={value.includes(item.short || "NP")}
+              id={item.id}
+              checked={value.includes(item.id || "NP")}
               className="cursor-pointer border data-[state=checked]:border-2 data-[state=checked]:text-slider border-white/10 bg-input-dark group-hover:bg-input-dark-hover data-[state=checked]:bg-white/5 data-[state=checked]:border-input-dark-hover w-5 h-5 group-hover:border-white/5 duration-500"
             />
             <div
@@ -86,4 +79,4 @@ export const QualityFilter = ({ value, setValue }: IProps) => {
       </div>
     </div>
   );
-};
+});

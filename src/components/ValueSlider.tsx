@@ -1,9 +1,11 @@
+import { filterStore } from "@/store/store";
 import {
   Slider,
   SliderTrack,
   SliderRange,
   SliderThumb,
 } from "@radix-ui/react-slider";
+import { observer } from "mobx-react";
 import { SetStateAction } from "react";
 
 interface IProps {
@@ -11,12 +13,19 @@ interface IProps {
   setValue: React.Dispatch<SetStateAction<number[]>>;
 }
 
-export const ValueSlider = ({ value, setValue }: IProps) => {
+// Оборачиваем компонент в observer
+export const ValueSlider = observer(() => {
+  const values = filterStore.getPriceFilter();
+
+  const change = (number: number[]) => {
+    filterStore.setPriceFilter(number);
+  };
+
   return (
     <div className="flex items-center w-full pl-1.5 pr-0.5">
       <Slider
-        value={value}
-        onValueChange={setValue}
+        value={values}
+        onValueChange={change}
         min={0}
         max={1000000}
         step={1}
@@ -30,4 +39,4 @@ export const ValueSlider = ({ value, setValue }: IProps) => {
       </Slider>
     </div>
   );
-};
+});
