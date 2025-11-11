@@ -1,1 +1,1 @@
-Клон основной страицы маркета https://market.csgo.com/ru/
+Клон основной страницы маркета https://market.csgo.com/ru/
